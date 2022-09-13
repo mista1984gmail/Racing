@@ -3,22 +3,20 @@ package org.example;
 import javax.swing.*;
 import java.awt.*;
 
-public class Enemy {
-
+public class EnemyBoss {
     int x;
     int y;
     int v;
 
-    Image imgEnemyGreen=new ImageIcon("res/enemy.gif").getImage();
-    Image imgEnemyRed=new ImageIcon("res/enemy2.gif").getImage();
+    Image imgEnemyGreen=new ImageIcon("res/enemyboss.gif").getImage();
 
     Road road;
     public Rectangle getRect(){
-        return new Rectangle(x,y,50,88);
+        return new Rectangle(x,y,65,243);
     }
 
 
-    public Enemy(int x,int y,int v,Road road){
+    public EnemyBoss(int x,int y,int v,Road road){
         this.x=x;
         this.y=y;
         this.v=v;
