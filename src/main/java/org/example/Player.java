@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Player {
+    public static final  int LIFE = 0;
     public static final int MAX_V=40;
     public static final int MAX_RIGHT=500;
     public static final int MAX_LEFT=50;
@@ -13,6 +14,7 @@ public class Player {
     int v;//скорость
     int dv;//ускорение
     int s;//расстояние
+    int l=LIFE;//жизни
     public Rectangle getRect(){
         return new Rectangle(x,y,50,87);
     }
