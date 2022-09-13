@@ -1,22 +1,24 @@
 package org.example;
 
 import javax.swing.*;
-import java.awt.event.ActionListener;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
+import java.util.List;
 
 public class Road  extends JPanel implements ActionListener, Runnable{
+    String name="";
     Timer mainTimer=new Timer(20,this);//обновление
-    Image imgRoad = new ImageIcon("src/main/resources/road.gif").getImage();//изображение дороги
+    Image imgRoad = new ImageIcon("res/road.gif").getImage();//изображение дороги
     Thread enemiesFactory = new Thread(this);
     Thread audioThread = new Thread(new AudioThread());
-    java.util.List<Enemy>enemyListRed=new ArrayList<Enemy>();
-    java.util.List<Enemy>enemyListGreen=new ArrayList<Enemy>();
+    List<Enemy>enemyListRed=new ArrayList<Enemy>();
+    List<Enemy>enemyListGreen=new ArrayList<Enemy>();
 
 
 
@@ -28,7 +30,6 @@ public class Road  extends JPanel implements ActionListener, Runnable{
         audioThread.start();
         addKeyListener(new MyKeyAdapter());
         setFocusable(true);
-
     }
     @Override
     public void run(){
@@ -80,7 +81,7 @@ public class Road  extends JPanel implements ActionListener, Runnable{
         g.setColor(Color.GREEN);
         Font font1 = new Font ("Arial",Font.ITALIC,20);
         g.setFont(font1);
-        g.drawString("Вы проехали "+ l + "км из 100 км",100,60);
+        g.drawString(name + " проехал "+ l + "км из 100 км",100,60);
 
     }
 
@@ -108,9 +109,18 @@ public class Road  extends JPanel implements ActionListener, Runnable{
         }
     }
 
+    private void setPlayerName() {
+        if(name.isEmpty()){
+        name=JOptionPane.showInputDialog("Введите свое имя!!!");
+        JOptionPane.showMessageDialog(null, "Привет " + name);}
+
+    }
+
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        setPlayerName();
         p.move();
         repaint();
         testCollisionWithEnemies();

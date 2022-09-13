@@ -9,8 +9,8 @@ public class Enemy {
     int y;
     int v;
 
-    Image imgEnemyGreen=new ImageIcon("src/main/resources/enemy.gif").getImage();
-    Image imgEnemyRed=new ImageIcon("src/main/resources/enemy2.gif").getImage();
+    Image imgEnemyGreen=new ImageIcon("res/enemy.gif").getImage();
+    Image imgEnemyRed=new ImageIcon("res/enemy2.gif").getImage();
     Road road;
     public Rectangle getRect(){
         return new Rectangle(x,y,50,88);
@@ -23,8 +23,6 @@ public class Enemy {
         this.v=v;
         this.road=road;
     }
-
-
 
     public void move(){
         y=y+road.p.v-v;

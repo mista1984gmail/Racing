@@ -9,7 +9,7 @@ public class Player {
     public static final int MAX_RIGHT=500;
     public static final int MAX_LEFT=50;
 
-    Image imgPlayer=new ImageIcon("src/main/resources/player.gif").getImage();
+    Image imgPlayer=new ImageIcon("res/player.gif").getImage();
     int v;//скорость
     int dv;//ускорение
     int s;//расстояние

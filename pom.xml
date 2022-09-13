@@ -32,4 +32,26 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <build>
+    <plugins>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-jar-plugin</artifactId>
+      <version>3.1.2</version>
+      <configuration>
+        <archive>
+          <manifest>
+            <addClasspath>true</addClasspath>
+            <packageName>org.example</packageName>
+            <mainClass>org.example.App</mainClass>
+          </manifest>
+          <manifestEntries>
+            <Created-By>s.mitskevich</Created-By>
+          </manifestEntries>
+        </archive>
+      </configuration>
+    </plugin>
+    </plugins>
+  </build>
+
 </project>
