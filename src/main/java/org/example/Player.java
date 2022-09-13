@@ -1,20 +1,24 @@
 package org.example;
 
+import org.apache.commons.lang3.time.StopWatch;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Player {
-    public static final  int LIFE = 0;
+    public static final int LIFE = 0;
     public static final int MAX_V=40;
     public static final int MAX_RIGHT=500;
     public static final int MAX_LEFT=50;
+
 
     Image imgPlayer=new ImageIcon("res/player.gif").getImage();
     int v;//скорость
     int dv;//ускорение
     int s;//расстояние
     int l=LIFE;//жизни
+    StopWatch stopWatch=new StopWatch();
     public Rectangle getRect(){
         return new Rectangle(x,y,50,87);
     }
@@ -22,13 +26,11 @@ public class Player {
     int y=450;//расположение
     int dy=0;//начальное ускорение
 
-    int time=0;
-
-
-
     int layer1=0;
     int layer2 =-750;
     public void move(){
+        if(!stopWatch.isStarted()){
+        stopWatch.start();}
         s+=v;
         v+=dv;
         x-=dy;
@@ -43,9 +45,7 @@ public class Player {
         layer1+=v;
         layer2+=v;
 
-
     }
-
 
     public void keyPressed(KeyEvent e){
         int key=e.getKeyCode();

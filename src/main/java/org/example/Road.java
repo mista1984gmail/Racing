@@ -23,8 +23,6 @@ public class Road  extends JPanel implements ActionListener, Runnable{
     List<EnemyBoss>enemyListBoss=new ArrayList<EnemyBoss>();
     List<Life>lifeList=new ArrayList<Life>();
 
-
-
     Player p=new Player();
 
     public Road(){
@@ -34,6 +32,7 @@ public class Road  extends JPanel implements ActionListener, Runnable{
         addKeyListener(new MyKeyAdapter());
         setFocusable(true);
     }
+
     @Override
     public void run(){
         while (true){
@@ -43,6 +42,9 @@ public class Road  extends JPanel implements ActionListener, Runnable{
                 enemyListRed.add(new Enemy(rand.nextInt(500),-700,15+rand.nextInt(15),this));
                 enemyListGreen.add(new Enemy(rand.nextInt(500),-700,15+rand.nextInt(15),this));
                 lifeList.add(new Life(rand.nextInt(500),-700,15+rand.nextInt(15),this));
+                if (p.s > 150000){
+                    enemyListBoss.add(new EnemyBoss(rand.nextInt(500),-700,15+rand.nextInt(15),this));
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -57,7 +59,6 @@ public class Road  extends JPanel implements ActionListener, Runnable{
         g.drawImage(imgRoad,0,p.layer1,null);
         g.drawImage(imgRoad,0,p.layer2,null);
         g.drawImage(p.imgPlayer,p.x,p.y,null);
-
         Iterator<Enemy>iterator=enemyListRed.iterator();
         while (iterator.hasNext()){
             Enemy e =iterator.next();
@@ -76,11 +77,13 @@ public class Road  extends JPanel implements ActionListener, Runnable{
                 e.move();
                 g.drawImage(e.imgEnemyGreen, e.x, e.y, null);}
         }
+
+
         Iterator<EnemyBoss>iterator3=enemyListBoss.iterator();
         while (iterator3.hasNext()){
             EnemyBoss e =iterator3.next();
             if (e.y>=1400 || e.y<=-1400 ){
-                iterator1.remove();
+                iterator3.remove();
             }else {
                 e.move();
                 g.drawImage(e.imgEnemyGreen, e.x, e.y, null);}
@@ -104,6 +107,10 @@ public class Road  extends JPanel implements ActionListener, Runnable{
         g.setFont(font);
         g.drawString(name + " проехал "+ l + "км из 200 км",100,60);
 
+        g.setColor(Color.ORANGE);
+        g.setFont(font);
+        g.drawString("Время: "+ p.stopWatch,300,30);
+
         int life=p.l;
         if(life<50){
         g.setColor(Color.GREEN);
@@ -115,6 +122,20 @@ public class Road  extends JPanel implements ActionListener, Runnable{
             g.drawString("ПОВРЕЖДЕНИЯ: "+ life + " % ",100,90);
         }
 
+    }
+
+    private void paintObject(Graphics g, List<ObjectInRoad> enemyListRed, Image p) {
+
+        Iterator<ObjectInRoad> iterator = enemyListRed.iterator();
+        while (iterator.hasNext()) {
+            ObjectInRoad e = iterator.next();
+            if (e.y >= 1400 || e.y <= -1400) {
+                iterator.remove();
+            } else {
+                e.move();
+                g.drawImage(p, e.x, e.y, null);
+            }
+        }
     }
 
     private void testCollisionWithEnemies() {
@@ -139,7 +160,7 @@ public class Road  extends JPanel implements ActionListener, Runnable{
             EnemyBoss e = i3.next();
             if (p.getRect().intersects(e.getRect())){
                 p.v-=15;
-                p.l+=10;
+                p.l+=2;
             }
         }
     }
@@ -160,34 +181,11 @@ public class Road  extends JPanel implements ActionListener, Runnable{
 
     private void testWin() {
         if (p.s>200000){
-            JOptionPane.showMessageDialog(null,"Вы выиграли!!! =))");
+            JOptionPane.showMessageDialog(null,"Вы выиграли!!! =))" + " Ваше время: " + p.stopWatch);
             System.exit(0);
         }
     }
 
-    private void testEnemyBoss() {
-        if (p.s==150000){
-            Random rand = new Random();
-            enemyListBoss.add(new EnemyBoss(rand.nextInt(500),-700,15+rand.nextInt(15),this));
-        }
-        if (p.s==160000){
-            Random rand = new Random();
-            enemyListBoss.add(new EnemyBoss(rand.nextInt(500),-700,15+rand.nextInt(15),this));
-        }
-        if (p.s==170000){
-            Random rand = new Random();
-            enemyListBoss.add(new EnemyBoss(rand.nextInt(500),-700,15+rand.nextInt(15),this));
-        }
-        if (p.s==180000){
-            Random rand = new Random();
-            enemyListBoss.add(new EnemyBoss(rand.nextInt(500),-700,15+rand.nextInt(15),this));
-        }
-        if (p.s==190000){
-            Random rand = new Random();
-            enemyListBoss.add(new EnemyBoss(rand.nextInt(500),-700,15+rand.nextInt(15),this));
-        }
-
-    }
     private void testLose() {
         if (p.l>100){
             JOptionPane.showMessageDialog(null,"Вы проиграли!!! =))");
@@ -202,8 +200,6 @@ public class Road  extends JPanel implements ActionListener, Runnable{
 
     }
 
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
         setPlayerName();
@@ -214,6 +210,7 @@ public class Road  extends JPanel implements ActionListener, Runnable{
         testWin();
         testLose();
     }
+
     private class MyKeyAdapter extends KeyAdapter{
         @Override
         public void keyPressed(KeyEvent e){
