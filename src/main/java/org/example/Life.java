@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class Life extends ObjectInRoad{
 
-    Image imgHeart=new ImageIcon("res/heart.gif").getImage();
+    Image img=new ImageIcon("res/heart.gif").getImage();
 
     public Rectangle getRect(){
         return new Rectangle(x,y,25,23);
@@ -16,5 +16,12 @@ public class Life extends ObjectInRoad{
         this.y=y;
         this.v=v;
         this.road=road;
+    }
+    public void setImg(Image img) {
+        this.img = img;
+    }
+
+    public Image getImg() {
+        return img;
     }
 }
