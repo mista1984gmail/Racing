@@ -5,6 +5,7 @@ import org.apache.commons.lang3.time.StopWatch;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.Objects;
 
 public class Player {
 
@@ -13,8 +14,8 @@ public class Player {
     public static final int MAX_RIGHT=500;
     public static final int MAX_LEFT=50;
 
-
-    Image imgPlayer=new ImageIcon("res/player.gif").getImage();
+    Image imgPlayer=new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("player.gif"))).getImage();
+    //Image imgPlayer=new ImageIcon("res/player.gif").getImage();
     int v;//скорость
     int dv;//ускорение
     int s;//расстояние

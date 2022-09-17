@@ -145,9 +145,13 @@ public class Road  extends JPanel implements ActionListener, Runnable{
     }
 
     private void setPlayerName() {
+        try {
         if (name.isEmpty()) {
             name = JOptionPane.showInputDialog("Введите свое имя!!!");
             JOptionPane.showMessageDialog(null, "Привет " + name);
+        }}
+        catch (Exception e){
+            e.printStackTrace();
         }
 
     }
