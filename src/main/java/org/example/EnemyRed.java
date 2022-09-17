@@ -2,12 +2,13 @@ package org.example;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 public class EnemyRed extends ObjectInRoad{
     int damage =1;
     int speedReduction=5;
-    Image img=new ImageIcon("res/enemy2.gif").getImage();
-
+    Image img=new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("enemy2.gif"))).getImage();
+    //Image img=new ImageIcon("enemy2.gif").getImage();
     public Rectangle getRect(){
         return new Rectangle(x,y,50,88);
     }

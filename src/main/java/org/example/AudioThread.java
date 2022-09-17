@@ -8,7 +8,9 @@ import java.io.FileNotFoundException;
 public class AudioThread implements Runnable{
     public void run(){
         try {
-            javazoom.jl.player.Player p = new Player(new FileInputStream(("res/song.mp3")));
+           // Player p = new Player(new FileInputStream("song.mp3"));
+            Player p = new Player(new FileInputStream(getClass()
+                    .getClassLoader().getResource("song.mp3").getPath()));
             p.play();
 
         } catch (FileNotFoundException e) {

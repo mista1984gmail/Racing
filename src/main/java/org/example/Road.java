@@ -1,21 +1,21 @@
 package org.example;
 
 import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Random;
+import java.util.*;
 import java.util.List;
 
 public class Road  extends JPanel implements ActionListener, Runnable{
     String name="";
     Font font = new Font ("Arial",Font.ITALIC,20);
     Timer mainTimer=new Timer(20,this);//обновление
-    Image imgRoad = new ImageIcon("res/road.gif").getImage();//изображение дороги
+    //Image imgRoad = new ImageIcon("res/road.gif").getImage();//изображение дороги
+    Image imgRoad=new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("road.gif"))).getImage();
     Thread enemiesFactory = new Thread(this);
     Thread audioThread = new Thread(new AudioThread());
     List<ObjectInRoad>enemyListRed=new ArrayList<>();
