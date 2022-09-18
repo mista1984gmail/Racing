@@ -8,7 +8,6 @@ public class EnemyGreen extends ObjectInRoad{
     int damage =1;
     int speedReduction=5;
     Image img=new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("enemy.gif"))).getImage();
-    //Image img=new ImageIcon("enemy.gif").getImage();
     public Rectangle getRect(){
         return new Rectangle(x,y,50,88);
     }

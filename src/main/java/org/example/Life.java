@@ -6,7 +6,6 @@ import java.util.Objects;
 
 public class Life extends ObjectInRoad{
     Image img=new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("heart.gif"))).getImage();
-    //Image img=new ImageIcon("heart.gif").getImage();
     public Rectangle getRect(){
         return new Rectangle(x,y,25,23);
     }

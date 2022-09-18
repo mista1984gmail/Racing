@@ -14,7 +14,6 @@ public class Road  extends JPanel implements ActionListener, Runnable{
     String name="";
     Font font = new Font ("Arial",Font.ITALIC,20);
     Timer mainTimer=new Timer(20,this);//обновление
-    //Image imgRoad = new ImageIcon("res/road.gif").getImage();//изображение дороги
     Image imgRoad=new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("road.gif"))).getImage();
     Thread enemiesFactory = new Thread(this);
     Thread audioThread = new Thread(new AudioThread());

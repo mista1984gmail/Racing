@@ -8,7 +8,6 @@ public class EnemyBoss extends ObjectInRoad{
     int damage =2;
     int speedReduction=15;
     Image img=new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("enemyboss.gif"))).getImage();
-    //Image img=new ImageIcon("enemyboss.gif").getImage();
     public Rectangle getRect(){
         return new Rectangle(x,y,65,243);
     }

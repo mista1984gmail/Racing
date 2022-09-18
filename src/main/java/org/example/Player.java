@@ -15,7 +15,6 @@ public class Player {
     public static final int MAX_LEFT=50;
 
     Image imgPlayer=new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("player.gif"))).getImage();
-    //Image imgPlayer=new ImageIcon("res/player.gif").getImage();
     int v;//скорость
     int dv;//ускорение
     int s;//расстояние
